@@ -1,0 +1,457 @@
+/* ============================================================
+   NST PRINT — Calculadora de viabilidade
+   Usa os tokens definidos em css/style.css (cores, fontes,
+   raio, sombra). Não redefine nenhum token global — só estiliza
+   os componentes próprios da seção #calculadora-viabilidade.
+   ============================================================ */
+
+.calc__intro{margin-bottom:44px}
+
+.calc__wizard{
+  max-width:760px;
+  margin-inline:auto;
+  background:var(--ink-850);
+  border:1px solid var(--line-dark);
+  border-top:3px solid var(--olive-500);
+  border-radius:10px;
+  padding:32px 24px 34px;
+}
+@media (min-width:760px){
+  .calc__wizard{padding:44px 52px 48px}
+}
+
+/* ---------- Indicador de progresso ---------- */
+.calc__progress{
+  position:relative;
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:36px;
+}
+.calc__progress-line-bg,
+.calc__progress-line-fill{
+  position:absolute;
+  top:17px;
+  left:17px;
+  right:17px;
+  height:1px;
+}
+.calc__progress-line-bg{background:var(--line-dark)}
+.calc__progress-line-fill{
+  width:0;
+  background:var(--olive-500);
+  transition:width .3s ease;
+}
+.calc__progress-step{
+  position:relative;
+  z-index:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+  text-align:center;
+}
+.calc__progress-n{
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  border:1px solid var(--line-dark);
+  background:var(--ink-850);
+  color:var(--titan-400);
+  font-family:var(--font-mono);
+  font-size:.85rem;
+  font-weight:500;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex:none;
+  transition:border-color .2s ease, color .2s ease, background-color .2s ease;
+}
+.calc__progress-label{
+  font-family:var(--font-mono);
+  font-size:.6rem;
+  font-weight:500;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--titan-400);
+}
+
+.calc__progress-step.is-done .calc__progress-n{
+  border-color:var(--olive-500);
+  background:var(--olive-500);
+  color:var(--ink-950);
+}
+.calc__progress-step.is-active .calc__progress-n{
+  border-color:var(--blue-600);
+  background:var(--blue-600);
+  color:#fff;
+}
+.calc__progress-step.is-active .calc__progress-label,
+.calc__progress-step.is-done .calc__progress-label{color:var(--titan-200)}
+
+/* ---------- Título / texto de cada passo ---------- */
+.calc__step-title{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:1.6rem;
+  letter-spacing:.02em;
+  text-transform:uppercase;
+  color:var(--bone-50);
+  margin-bottom:8px;
+}
+.calc__step-title:focus-visible{outline:none}
+.calc__step-hint{
+  color:var(--titan-300);
+  font-size:.92rem;
+  margin-bottom:24px;
+  max-width:34rem;
+}
+
+/* ---------- Passo 1 · Seleção de máquina ---------- */
+.calc__machines{
+  display:grid;
+  gap:14px;
+  margin-bottom:18px;
+}
+@media (min-width:560px){
+  .calc__machines{grid-template-columns:repeat(2, 1fr)}
+}
+
+.calc__machine{display:block}
+.calc__machine-input{
+  position:absolute;
+  opacity:0;
+  width:1px;
+  height:1px;
+  pointer-events:none;
+}
+.calc__machine-card{
+  display:block;
+  height:100%;
+  border:1px solid var(--line-dark);
+  border-radius:8px;
+  padding:16px 18px;
+  cursor:pointer;
+  transition:border-color .2s ease, background-color .2s ease, transform .2s ease;
+}
+.calc__machine-card:hover{border-color:var(--olive-300);transform:translateY(-2px)}
+.calc__machine-input:checked + .calc__machine-card{
+  border-color:var(--blue-600);
+  background:rgba(46,108,246,.1);
+}
+.calc__machine-input:focus-visible + .calc__machine-card{
+  outline:2px solid var(--blue-600);
+  outline-offset:2px;
+}
+
+.calc__machine-badge{
+  display:inline-block;
+  font-family:var(--font-mono);
+  font-size:.6rem;
+  font-weight:500;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--olive-200);
+  border:1px solid var(--olive-500);
+  border-radius:999px;
+  padding:3px 10px;
+  margin-bottom:10px;
+}
+.calc__machine-name{
+  display:block;
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:1.5rem;
+  letter-spacing:.02em;
+  text-transform:uppercase;
+  color:var(--bone-50);
+}
+.calc__machine-speed{
+  display:block;
+  margin-top:6px;
+  font-family:var(--font-mono);
+  font-size:.72rem;
+  color:var(--titan-300);
+  line-height:1.5;
+}
+
+.calc__quiz-toggle{
+  font-size:.88rem;
+  font-weight:600;
+  color:var(--titan-200);
+  text-decoration:underline;
+  text-decoration-color:var(--line-dark);
+  text-underline-offset:3px;
+  margin-bottom:6px;
+}
+.calc__quiz-toggle:hover{color:#fff}
+
+.calc__quiz{
+  margin-top:16px;
+  padding:18px 18px 20px;
+  background:var(--ink-900);
+  border:1px solid var(--line-dark);
+  border-radius:8px;
+}
+.calc__quiz-field label{
+  display:block;
+  font-size:.88rem;
+  color:var(--titan-200);
+  margin-bottom:10px;
+}
+.calc__quiz-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.calc__quiz-row input[type="number"]{flex:1 1 110px;min-width:0}
+.calc__quiz-result{
+  margin-top:14px;
+  padding-top:14px;
+  border-top:1px dashed var(--line-dark);
+  font-size:.9rem;
+  color:var(--titan-200);
+  line-height:1.6;
+}
+.calc__quiz-result strong{color:var(--bone-50)}
+.calc__quiz-use{display:block;margin-top:12px}
+
+/* ---------- Campos de formulário (passo 2) ---------- */
+.calc__field{margin-bottom:22px}
+.calc__field label,
+.calc__label{
+  display:block;
+  font-size:.88rem;
+  font-weight:600;
+  color:var(--titan-200);
+  margin-bottom:8px;
+}
+.calc__field label span,
+.calc__label span{
+  font-weight:400;
+  color:var(--titan-400);
+}
+
+.calc__field input[type="number"],
+.calc__quiz-row input[type="number"]{
+  width:100%;
+  background:var(--ink-950);
+  border:1px solid var(--line-dark);
+  border-radius:6px;
+  padding:12px 14px;
+  font-family:var(--font-body);
+  font-size:1rem;
+  color:var(--bone-50);
+  transition:border-color .2s ease;
+}
+.calc__field input[type="number"]:focus-visible,
+.calc__quiz-row input[type="number"]:focus-visible{
+  border-color:var(--blue-600);
+  outline:2px solid var(--blue-600);
+  outline-offset:2px;
+}
+/* Vermelho fica reservado para erro de preenchimento — nunca para o
+   resultado do cálculo (payback longo usa tom neutro, ver .calc__payback-badge--longo). */
+.calc__field input[aria-invalid="true"]{border-color:#c9836c}
+
+.calc__error{
+  margin-top:8px;
+  font-size:.82rem;
+  color:#d99a85;
+}
+
+.calc__hint{
+  margin-top:8px;
+  font-size:.82rem;
+  color:var(--titan-400);
+}
+
+/* ---------- Navegação do wizard ---------- */
+.calc__nav{
+  display:flex;
+  justify-content:space-between;
+  gap:14px;
+  margin-top:32px;
+  padding-top:26px;
+  border-top:1px solid var(--line-dark);
+}
+
+.btn--calc-primary{
+  background:var(--blue-600);
+  color:#fff;
+  box-shadow:0 10px 24px -12px rgba(46,108,246,.7);
+}
+.btn--calc-primary:hover{background:var(--blue-700);transform:translateY(-2px)}
+
+/* ---------- Passo 4 · Dashboard de resultado ---------- */
+.calc__dash-grid{
+  display:grid;
+  gap:14px;
+  margin-bottom:18px;
+}
+@media (min-width:640px){
+  .calc__dash-grid{grid-template-columns:repeat(3, 1fr)}
+}
+.calc__stat{
+  background:var(--ink-900);
+  border:1px solid var(--line-dark);
+  border-radius:8px;
+  padding:18px 20px;
+}
+.calc__stat-label{
+  display:block;
+  font-family:var(--font-mono);
+  font-size:.62rem;
+  font-weight:500;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--titan-400);
+  margin-bottom:8px;
+}
+.calc__stat-value{
+  display:block;
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:1.55rem;
+  color:var(--bone-50);
+  line-height:1.15;
+}
+.calc__stat-sub{
+  display:block;
+  margin-top:4px;
+  font-size:.8rem;
+  color:var(--titan-300);
+}
+
+.calc__notice{
+  padding:14px 16px;
+  margin-bottom:22px;
+  background:rgba(154,161,131,.1);
+  border:1px solid rgba(154,161,131,.35);
+  border-radius:8px;
+  font-size:.88rem;
+  color:var(--olive-200);
+}
+
+.calc__payback{
+  padding:22px 24px;
+  margin-bottom:28px;
+  background:var(--ink-900);
+  border:1px solid var(--line-dark);
+  border-radius:8px;
+}
+.calc__payback-badge{
+  display:inline-block;
+  font-family:var(--font-mono);
+  font-size:.64rem;
+  font-weight:500;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  border-radius:999px;
+  padding:4px 12px;
+  margin-bottom:12px;
+  border:1px solid var(--olive-500);
+  color:var(--olive-200);
+}
+.calc__payback-badge--moderado,
+.calc__payback-badge--longo,
+.calc__payback-badge--inviavel{
+  border-color:var(--titan-400);
+  color:var(--titan-200);
+}
+.calc__payback-value{
+  display:block;
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:2.3rem;
+  text-transform:uppercase;
+  color:var(--bone-50);
+  margin-bottom:10px;
+}
+.calc__payback-msg{
+  color:var(--titan-300);
+  font-size:.92rem;
+  max-width:38rem;
+}
+
+.calc__chart-block{margin-bottom:26px}
+.calc__chart-wrap{
+  position:relative;
+  height:230px;
+  margin-bottom:16px;
+}
+@media (min-width:760px){
+  .calc__chart-wrap{height:320px}
+}
+.calc__chart-callouts{
+  display:flex;
+  gap:14px;
+  margin-bottom:12px;
+}
+.calc__chart-callouts div{
+  flex:1;
+  padding:12px 14px;
+  background:var(--ink-900);
+  border:1px solid var(--line-dark);
+  border-radius:8px;
+  text-align:center;
+}
+.calc__chart-callouts span{
+  display:block;
+  font-family:var(--font-mono);
+  font-size:.6rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--titan-400);
+  margin-bottom:6px;
+}
+.calc__chart-callouts strong{
+  font-family:var(--font-display);
+  font-size:1.1rem;
+  color:var(--bone-50);
+}
+.calc__chart-note{
+  font-size:.85rem;
+  color:var(--titan-300);
+}
+
+.calc__assumptions{
+  font-size:.78rem;
+  color:var(--titan-400);
+  margin-bottom:28px;
+  padding-top:18px;
+  border-top:1px dashed var(--line-dark);
+}
+
+.calc__result-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-bottom:22px;
+}
+
+.calc__privacy{
+  font-size:.8rem;
+  color:var(--titan-400);
+}
+
+/* ---------- Utilidades de acessibilidade ---------- */
+.calc__sr-status{
+  position:absolute;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+  clip:rect(0 0 0 0);
+  white-space:nowrap;
+}
+
+.calc__noscript{
+  display:block;
+  max-width:760px;
+  margin-inline:auto;
+  padding:20px 22px;
+  background:var(--ink-850);
+  border:1px solid var(--line-dark);
+  border-radius:8px;
+  color:var(--titan-200);
+  text-align:center;
+}

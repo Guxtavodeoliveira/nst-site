@@ -1,0 +1,40 @@
+NST PRINT — SITE INSTITUCIONAL
+==============================
+
+Site estático em HTML + CSS + JavaScript puro. Sem build, sem dependências.
+Para publicar na Hostinger: envie TODO o conteúdo desta pasta (mantendo a
+estrutura) para a pasta public_html via FTP ou Gerenciador de Arquivos.
+
+ESTRUTURA
+---------
+index.html          Página única com todas as seções
+css/style.css       Estilos (design system comentado no topo do arquivo)
+js/main.js          Menu, animações, parallax e evento de clique do WhatsApp
+fonts/              Fontes auto-hospedadas (nenhuma dependência externa)
+img/                Imagens organizadas por seção (hero, maquinas, insumos,
+                    equipe, mapa, logo, video = capas dos vídeos)
+video/              Depoimentos de clientes + loop de produção
+
+3 PENDÊNCIAS ANTES DE PUBLICAR (buscar por "TODO" no index.html)
+----------------------------------------------------------------
+1. GOOGLE ADS / GA4 — no <head> do index.html há um comentário indicando
+   exatamente onde colar a tag gtag.js. O evento de clique dos botões de
+   WhatsApp (categoria "whatsapp", label = origem do clique) já está pronto
+   em js/main.js e passa a disparar sozinho assim que a tag existir.
+   Enquanto a tag não existir, nada quebra.
+
+2. INSTAGRAM — no rodapé, trocar o href="#" pela URL real do perfil.
+
+3. OPEN GRAPH — no <head>, trocar "https://www.seudominio.com.br" pelo
+   domínio final nas tags og:url e og:image (precisa ser URL absoluta).
+
+OBSERVAÇÕES
+-----------
+- Todos os CTAs usam o formato universal https://wa.me/5547999193256 com
+  mensagem pré-preenchida específica por seção/produto.
+- Para trocar uma foto, basta substituir o arquivo de mesmo nome na pasta
+  img/ (ex.: img/maquinas/nst-5h.png).
+- Falta imagem real da linha DTF UV: o card usa um selo gráfico "UV" e há
+  um comentário <!-- IMG: ... --> no index.html marcando o local.
+- As fotos NST 5H e NST 4H usam a mesma imagem do catálogo (era a única
+  disponível); os arquivos são separados para facilitar a troca depois.

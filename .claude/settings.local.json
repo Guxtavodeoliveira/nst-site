@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:cdnjs.cloudflare.com)",
+      "WebFetch(domain:api.cdnjs.com)",
+      "Bash(npx --version)",
+      "Bash(rm \"C:\\\\Users\\\\Gustavo\\\\Downloads\\\\nst-print-site\\\\nst-print-site\\\\.claude\\\\launch.json\" && rmdir \"C:\\\\Users\\\\Gustavo\\\\Downloads\\\\nst-print-site\\\\nst-print-site\\\\.claude\" 2>/dev/null; echo done)",
+      "WebSearch",
+      "Bash(python -c \"import matplotlib; print\\('matplotlib', matplotlib.__version__\\)\")",
+      "Bash(pip install *)",
+      "Bash(python -c \"import PIL; print\\('Pillow', PIL.__version__\\)\")",
+      "Bash(python gerar_infografico.py)",
+      "Bash(python -c \"import matplotlib; print\\(matplotlib.__version__\\)\")",
+      "Bash(ls -la \"C:\\\\Users\\\\Gustavo\\\\Downloads\\\\Custo DTF 602- Excel.xlsx\")",
+      "Bash(markitdown \"Custo DTF 602- Excel.xlsx\")",
+      "Bash(python -c \"import openpyxl; print\\('openpyxl', openpyxl.__version__\\)\")",
+      "Bash(python ler_excel.py)",
+      "Bash(python -c ' *)",
+      "Bash(gh --version)",
+      "Bash(gh auth *)",
+      "Bash(node --check js/calculadora.js)",
+      "Bash(node --check functions/api/calcular.js)",
+      "Bash(node --input-type=module --check)"
+    ]
+  }
+}

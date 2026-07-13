@@ -47,7 +47,7 @@ var MACHINES = [
     nome: 'NST 5H',
     larguraM: 0.60,
     velocidadeMLinearH: 30 / 0.60, // 30 m²/h (média de 40 e 20) ÷ 0,60m
-    investimentoFixo: 149000,
+    investimentoFixo: 155000,
     custoFilmePorMetro: FILME_60CM_POR_METRO
   },
   {
@@ -55,7 +55,7 @@ var MACHINES = [
     nome: 'NST 4H',
     larguraM: 0.60,
     velocidadeMLinearH: 19 / 0.60, // 19 m²/h (média do site) ÷ 0,60m
-    investimentoFixo: 129000,
+    investimentoFixo: 135000,
     custoFilmePorMetro: FILME_60CM_POR_METRO
   },
   {
@@ -71,7 +71,7 @@ var MACHINES = [
     nome: 'NST DUAL',
     larguraM: 0.30,
     velocidadeMLinearH: 2.5 / 0.30, // 2,5 m²/h (média do site) ÷ 0,30m
-    investimentoFixo: 57000,
+    investimentoFixo: 59000,
     custoFilmePorMetro: FILME_30CM_POR_METRO
   }
 ];

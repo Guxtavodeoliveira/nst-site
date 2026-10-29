@@ -18,8 +18,23 @@ document.documentElement.classList.add('js');
                               event_label: '<origem_do_clique>' })
    Enquanto o gtag não existir, o clique NUNCA quebra: a chamada
    está protegida por verificação de tipo + try/catch.
+
+   GOOGLE TAG MANAGER (GTM-5LZJFP88): todo clique também envia
+   para o dataLayer o evento personalizado "whatsapp_click", com
+   a variável "whatsapp_origem" (de onde veio o clique). No GTM,
+   basta criar um acionador "Evento personalizado" com o nome
+   whatsapp_click para usar como conversão do Google Ads.
 ------------------------------------------------------------ */
 window.onWhatsAppClick = function (label) {
+  try {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'whatsapp_click',
+      whatsapp_origem: label || 'whatsapp'
+    });
+  } catch (e) {
+    /* nunca interromper a navegação por causa de analytics */
+  }
   try {
     if (typeof gtag === 'function') {
       gtag('event', 'click', {

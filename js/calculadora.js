@@ -35,7 +35,7 @@
   var PAYBACK_LIMIAR_BOM_MESES = 24;
   var PAYBACK_LIMIAR_MODERADO_MESES = 36;
 
-  var WHATSAPP_NUMERO = '5547999193256';
+  var WHATSAPP_NUMERO = '5547997671723';
 
   // Dados usados só pelo quiz "não sei qual escolher" (comparação
   // de capacidade) e pelos cards do passo 1 — nada de custo aqui.

@@ -17,11 +17,12 @@ video/              Depoimentos de clientes + loop de produção
 
 3 PENDÊNCIAS ANTES DE PUBLICAR (buscar por "TODO" no index.html)
 ----------------------------------------------------------------
-1. GOOGLE ADS / GA4 — no <head> do index.html há um comentário indicando
-   exatamente onde colar a tag gtag.js. O evento de clique dos botões de
-   WhatsApp (categoria "whatsapp", label = origem do clique) já está pronto
-   em js/main.js e passa a disparar sozinho assim que a tag existir.
-   Enquanto a tag não existir, nada quebra.
+1. GOOGLE ADS / GA4 — FEITO. O Google Tag Manager (GTM-5LZJFP88) está
+   instalado no index.html (topo do <head> + noscript após o <body>).
+   As tags do Google Ads / GA4 são configuradas no painel do GTM.
+   Cada clique nos botões de WhatsApp envia ao dataLayer o evento
+   "whatsapp_click" com a variável "whatsapp_origem" (origem do clique),
+   pronto para virar acionador de conversão no GTM.
 
 2. INSTAGRAM — no rodapé, trocar o href="#" pela URL real do perfil.
 
@@ -30,7 +31,7 @@ video/              Depoimentos de clientes + loop de produção
 
 OBSERVAÇÕES
 -----------
-- Todos os CTAs usam o formato universal https://wa.me/5547999193256 com
+- Todos os CTAs usam o formato universal https://wa.me/5547997671723 com
   mensagem pré-preenchida específica por seção/produto.
 - Para trocar uma foto, basta substituir o arquivo de mesmo nome na pasta
   img/ (ex.: img/maquinas/nst-5h.png).

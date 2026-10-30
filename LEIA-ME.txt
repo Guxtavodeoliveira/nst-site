@@ -24,6 +24,11 @@ video/              Depoimentos de clientes + loop de produção
    "whatsapp_click" com a variável "whatsapp_origem" (origem do clique),
    pronto para virar acionador de conversão no GTM.
 
+   META ADS — FEITO. O Pixel da Meta (1649546593296569) está no final
+   do <head> do index.html, registrando PageView em cada visita. Cada
+   clique nos botões de WhatsApp dispara o evento padrão "Contact"
+   (content_name = origem do clique), para usar como conversão.
+
 2. INSTAGRAM — no rodapé, trocar o href="#" pela URL real do perfil.
 
 3. OPEN GRAPH — no <head>, trocar "https://www.seudominio.com.br" pelo

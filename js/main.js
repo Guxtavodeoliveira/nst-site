@@ -35,6 +35,15 @@ window.onWhatsAppClick = function (label) {
   } catch (e) {
     /* nunca interromper a navegação por causa de analytics */
   }
+  /* META PIXEL (1649546593296569): clique no WhatsApp = evento
+     padrão "Contact", usado como conversão no Meta Ads. */
+  try {
+    if (typeof fbq === 'function') {
+      fbq('track', 'Contact', { content_name: label || 'whatsapp' });
+    }
+  } catch (e) {
+    /* nunca interromper a navegação por causa de analytics */
+  }
   try {
     if (typeof gtag === 'function') {
       gtag('event', 'click', {
